@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/karels/Dropbox/Fic/CAIT/TFG/KGuardiant/KGuardiant/KGuardiant_console/main.cpp
+iostream
+-
+

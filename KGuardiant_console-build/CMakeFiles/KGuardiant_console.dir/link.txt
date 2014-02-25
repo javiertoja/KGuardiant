@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/KGuardiant_console.dir/main.cpp.o  -o KGuardiant_console -rdynamic 
