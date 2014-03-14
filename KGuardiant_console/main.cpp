@@ -1,3 +1,9 @@
+/*
+ * Main.cpp
+ *
+ *  Created on: 13/03/2014
+ *      Author: Javier Toja Alamancos
+ */
 #include <iostream>
 #include "Console.h"
 using namespace std;
@@ -8,8 +14,9 @@ bool exit = false;
 
 int main()
 {
-	cout << "Hola Mundo." << endl;
+	cout << "Hola Mundo.\n";
 
-	new Console() ;
-    return 0;
+	Console *sistema = new Console();
+	sistema->run();
+	return 0;
 }
