@@ -7,7 +7,7 @@ OCVFLAGS= `pkg-config --libs --cflags opencv`
 all: kguardiant
 
 kguardiant : main.o
-	$(CC) -g main.o Console.o AlgorithmBase.o -o kguardiant $(INCLUDEFC) $(LIBSFC)  $(OCVFLAGS) 
+	$(CC) -g *.o -o kguardiant $(INCLUDEFC) $(LIBSFC)  $(OCVFLAGS) 
 
 main.o: main.cpp
 	$(CC) -c *.cpp *.h $(INCLUDEFC)  $(LIBSFC) $(OCVFLAGS) 

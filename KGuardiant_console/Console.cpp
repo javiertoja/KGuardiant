@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include "Console.h"
+#include "VisorKinnect.h"
 
 /*
  * Constructor valeiro do obxecto console encargado de crear e inicializar
@@ -84,9 +85,11 @@ void Console::parseOpts() {
 	std::cout << "Elexindo [" << option << "]" << std::endl;
 	switch(option) {
 
-	case '1':
+	case '1':{
+		VisorKinnect *visor = new VisorKinnect();
+		visor->run();
 		break;
-
+	}
 	case 'q':
 		stop();
 		break;

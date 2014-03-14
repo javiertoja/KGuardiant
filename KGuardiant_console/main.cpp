@@ -14,9 +14,7 @@ bool exit = false;
 
 int main()
 {
-	cout << "Hola Mundo.\n";
-
-	Console *sistema = new Console();
-	sistema->run();
+	Console *kguardiant = new Console();
+	kguardiant->run();
 	return 0;
 }
