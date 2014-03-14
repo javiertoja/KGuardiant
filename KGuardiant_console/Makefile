@@ -1,4 +1,4 @@
-#Makefile del proyecto, se construyen todos los archivos cpp y header 
+#Makefile do proxecto, construe todos os arquivos cpp e header 
 # Marzo 2014 - Javier Toja Alamancos
 CC=g++
 CFLAGS= -ggdb -lm -I. 
@@ -7,7 +7,7 @@ OCVFLAGS= `pkg-config --libs --cflags opencv`
 all: kguardiant
 
 kguardiant : main.o
-	$(CC) -g *.o -o kguardiant $(INCLUDEFC) $(LIBSFC)  $(OCVFLAGS) 
+	$(CC) -g main.o Console.o AlgorithmBase.o -o kguardiant $(INCLUDEFC) $(LIBSFC)  $(OCVFLAGS) 
 
 main.o: main.cpp
 	$(CC) -c *.cpp *.h $(INCLUDEFC)  $(LIBSFC) $(OCVFLAGS) 
