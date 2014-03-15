@@ -82,6 +82,9 @@ void VisorKinnect::execute() {
 
 		//Amosamos o resulado nunha nova ventá con nome "Camara" frame a frame
 		imshow( "Camara", frame );
+
+		cv::cvtColor(frame, frame, cv::COLOR_RGB2GRAY );
+		imshow( "Camara con escalado a gris", frame );
 		nframe++;
 
 		//Interacción co teclado

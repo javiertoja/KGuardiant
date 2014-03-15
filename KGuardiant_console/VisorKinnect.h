@@ -10,8 +10,8 @@
 
 #include "AlgorithmBase.h"
 #include "opencv/cv.h"
-#include "opencv/cvaux.h"
-#include "opencv/highgui.h"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include <sys/time.h>
 #include <iostream>
 #include <cstdio>
