@@ -2,7 +2,7 @@
  * VisorKinnect.cpp
  *
  *  Created on: 14/03/2014
- *      Author: karels
+ *      Author: Javier Toja Alamancos
  */
 
 #include "VisorKinnect.h"
@@ -66,7 +66,7 @@ void VisorKinnect::execute() {
 	if(capture.isOpened()){
 			capture.set(CV_CAP_PROP_FRAME_WIDTH, 640);
 			capture.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
-			capture.set(CV_CAP_PROP_FPS, 30); //30 fps
+			capture.set(CV_CAP_PROP_FPS, 30);
 			std::cout << "Camara correcta !." << std::endl;
 	}else {
 		std::cout << "Erro o abrir a camara." << std::endl;
@@ -80,7 +80,7 @@ void VisorKinnect::execute() {
 		sprintf(text,"%d",nframe);
 		cv::putText(frame, text, cvPoint(10,frame.size().height-40), cv::FONT_HERSHEY_COMPLEX_SMALL,1.0, cvScalarAll(0));
 
-		//Amosa o resulado
+		//Amosamos o resulado nunha nova ventá con nome "Camara" frame a frame
 		imshow( "Camara", frame );
 		nframe++;
 
@@ -92,9 +92,9 @@ void VisorKinnect::execute() {
 			waitKeyTime=waitKeyTime==0?33:0;
 		}
 	}
-
 	cvDestroyAllWindows();
 }
+
 /*
  * Método encargado de realizar un log da saida do sistema no caso de que exista
  */

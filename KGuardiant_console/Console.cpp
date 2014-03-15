@@ -53,8 +53,10 @@ void Console::log() {
 
 	std::fstream archivo("Log.txt");
 
-	archivo << option;
-	archivo.close();
+	if (archivo){
+		archivo << option;
+		archivo.close();
+	}
 }
 /*
  * Método encargado de realzar un log dos eventos do sistema e das suas entradas
@@ -63,7 +65,11 @@ void Console::log() {
 void Console::log(char *msg) {
 
 	std::fstream archivo("Log.txt");
-	//archivo << msg + "\n";
+
+	if (archivo){
+		archivo << msg;
+		archivo.close();
+	}
 }
 
 /*
@@ -104,5 +110,5 @@ void Console::parseOpts() {
 void Console::stop() {
 
 	exit = true;
-	log("Saindo da App.");
+	log((char *)"Saindo da App.");
 }

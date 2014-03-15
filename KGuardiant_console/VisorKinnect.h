@@ -2,7 +2,7 @@
  * VisorKinnect.h
  *
  *  Created on: 14/03/2014
- *      Author: karels
+ *      Author: Javier Toja Alamancos
  */
 
 #ifndef VISORKINNECT_H_
