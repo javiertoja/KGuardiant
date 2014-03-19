@@ -4,11 +4,7 @@
  *  Created on: 13/03/2014
  *      Author: Javier Toja Alamancos
  */
-#include <iostream>
-#include <fstream>
 #include "Console.h"
-#include "VisorKinnect.h"
-
 /*
  * Constructor valeiro do obxecto console encargado de crear e inicializar
  * obxecto console para o seu uso.
@@ -16,7 +12,7 @@
  */
 Console::Console() {
 	std::cout << "Construindo Obxeto Console\n";
-	exit = false;
+	exit_console = false;
 }
 
 /*
@@ -37,7 +33,7 @@ Console::~Console() {
 void Console::run() {
 
 	std::cout << "Iniciando bucle de escoita..." << std::endl;
-	while (!exit){
+	while (!exit_console){
 
 		showOpts();
 		std::cin >> option;
@@ -79,6 +75,7 @@ void Console::showOpts() {
 
 	std::cout << "Benvido" << std::endl;
 	std::cout << "1.- Visor." << std::endl;
+	std::cout << "2.- Hog Detector" << std::endl;
 	std::cout << "q.- Sair."  << std::endl;
 }
 
@@ -96,6 +93,11 @@ void Console::parseOpts() {
 		visor->run();
 		break;
 	}
+	case '2':{
+		PeopleDetector2d *detector = new PeopleDetector2d();
+		detector->execute();
+		break;
+	}
 	case 'q':
 		stop();
 		break;
@@ -109,6 +111,6 @@ void Console::parseOpts() {
  */
 void Console::stop() {
 
-	exit = true;
+	exit_console = true;
 	log((char *)"Saindo da App.");
 }

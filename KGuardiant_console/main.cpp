@@ -10,8 +10,6 @@ using namespace std;
 
 #define MAX_INPUT_SIZE 256
 
-bool exit = false;
-
 int main()
 {
 	Console *kguardiant = new Console();

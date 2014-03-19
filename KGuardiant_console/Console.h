@@ -8,10 +8,15 @@
 #ifndef CONSOLE_H_
 #define CONSOLE_H_
 
+#include <iostream>
+#include <fstream>
+#include "VisorKinnect.h"
+#include "PeopleDetector2d.h"
+
 class Console {
 
 private:
-	bool exit;
+	bool exit_console;
 	char option;
 public:
 	Console();
