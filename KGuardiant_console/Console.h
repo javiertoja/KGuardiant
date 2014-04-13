@@ -12,6 +12,7 @@
 #include <fstream>
 #include "VisorKinnect.h"
 #include "PeopleDetector2d.h"
+#include "MovementDetector.h"
 
 class Console {
 

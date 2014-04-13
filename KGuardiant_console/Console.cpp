@@ -76,6 +76,7 @@ void Console::showOpts() {
 	std::cout << "Benvido" << std::endl;
 	std::cout << "1.- Visor." << std::endl;
 	std::cout << "2.- Hog Detector" << std::endl;
+	std::cout << "3.- Movement Detector" << std::endl;
 	std::cout << "q.- Sair."  << std::endl;
 }
 
@@ -98,6 +99,11 @@ void Console::parseOpts() {
 		detector->execute();
 		break;
 	}
+	case '3':{
+			MovementDetector *detector = new MovementDetector();
+			detector->run();
+			break;
+		}
 	case 'q':
 		stop();
 		break;
