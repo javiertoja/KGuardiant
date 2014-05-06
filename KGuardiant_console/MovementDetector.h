@@ -10,22 +10,26 @@
 
 #include "AlgorithmBase.h"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/opencv.hpp"
 #include "opencv2/video/background_segm.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <stdio.h>
 #include <iostream>
+#include "cvblob.h"
 
 typedef std::vector<cv::Mat> ImagesType;
 typedef std::vector<std::vector<cv::Point> > ContoursType;
 
 using namespace cv;
 using namespace std;
+using namespace cvb;
 
 class MovementDetector: public AlgorithmBase {
 
 private:
 	cv::Mat frame;
 	cv::VideoCapture capture;
+
 	bool origin;
 	char option;
 public:
