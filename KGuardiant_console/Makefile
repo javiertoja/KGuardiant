@@ -2,7 +2,7 @@
 # Marzo 2014 - Javier Toja Alamancos
 CC=g++
 CFLAGS= -ggdb -lm -I. 
-OCVFLAGS= `pkg-config --libs --cflags opencv`
+OCVFLAGS= `pkg-config --libs --cflags opencv cvblob`
 
 all: kguardiant
 
