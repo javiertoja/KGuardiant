@@ -8,7 +8,10 @@ KGuardiantServer::KGuardiantServer(QObject *parent) :
 
 void KGuardiantServer::startServer()
 {
-    int port = 1234;
+    QDir dir;
+    QSettings settings(dir.absolutePath()+"/server.ini",QSettings::IniFormat,this);
+
+    int port = settings.value("configuracion/porto","-1").toInt();
 
     if(!this->listen(QHostAddress::Any,port))
     {

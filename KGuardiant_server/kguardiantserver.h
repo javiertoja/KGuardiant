@@ -2,6 +2,8 @@
 #define KGUARDIANTSERVER_H
 
 #include <QTcpServer>
+#include <QSettings>
+#include <QDir>
 
 class KGuardiantServer : public QTcpServer
 {
