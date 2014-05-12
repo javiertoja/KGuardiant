@@ -1,0 +1,8 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+#define EX_NO_INPUT 'NO_INPUT'
+#define EX_NO_WRITEABLE 'NO_WRITEABLE'
+#define EX_NO_DATA 'NO_DATA'
+
+#endif // CONSTANTS_H
