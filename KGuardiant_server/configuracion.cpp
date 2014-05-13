@@ -8,7 +8,7 @@ Configuracion* Configuracion::pinstance = 0;
 Configuracion* Configuracion::Instance()
 {
     if (pinstance == 0){
-        qDebug() << "Creando singleton";
+
         pinstance = new Configuracion();
     }
     return pinstance;
