@@ -9,15 +9,16 @@ KGuardiantServer::KGuardiantServer(QObject *parent) :
 void KGuardiantServer::startServer()
 {
     Configuracion* singleton = Configuracion::Instance();
-    int port = singleton->getValueConfig("configuracion","porto").toInt();
+    QString port = singleton->getValueConfig("configuracion","porto");
 
-    if(!this->listen(QHostAddress::Any,port))
+    if(!this->listen(QHostAddress::Any,port.toInt()))
     {
         qDebug() << "Erro o arrancar o servidor";
+        Logger::Instance()->log(QString("Erro o arrancar o servidor.\n"));
     }
     else
     {
-        qDebug() << "Escoitando o porto :"<< port << " ...";
+         Logger::Instance()->log((QString("Escoitando o porto [%1]").arg(port)));
     }
 }
 
@@ -26,7 +27,7 @@ void KGuardiantServer::incomingConnection(qintptr socketDescriptor)
 {
     //Temos unha nova conexión
     qDebug() << "Conectando cliente ID [" << socketDescriptor << "]";
-
+    Logger::Instance()->log((QString("Conectando cliente ID [%1]").arg(socketDescriptor)));
     //Por cada nova conexión creamos un novo thread
     KGuardiantThread *thread = new KGuardiantThread(socketDescriptor,this);
 

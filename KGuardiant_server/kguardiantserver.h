@@ -5,6 +5,7 @@
 #include <QSettings>
 #include <QDir>
 #include "configuracion.h"
+#include "logger.h"
 
 class KGuardiantServer : public QTcpServer
 {
