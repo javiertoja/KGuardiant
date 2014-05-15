@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSettings>
 #include <QDir>
+#include <QMutex>
 #include "constants.h"
 
 class Configuracion : public QObject
@@ -16,7 +17,7 @@ public:
     void setValueConfig(QString tag,
                         QString lbl,
                         QString value);
-
+    static void drop();
 signals:
     
 public slots:

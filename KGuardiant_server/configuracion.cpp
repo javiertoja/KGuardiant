@@ -9,7 +9,12 @@ Configuracion* Configuracion::Instance()
 {
     if (pinstance == 0){
 
-        pinstance = new Configuracion();
+        static QMutex mutex;
+        mutex.lock();
+        if (pinstance == 0){
+            pinstance = new Configuracion();
+        }
+        mutex.unlock();
     }
     return pinstance;
 }
@@ -22,8 +27,17 @@ Configuracion::Configuracion(QObject *parent) :
     config = new QSettings(dir->absolutePath()+"/server.ini",
                            QSettings::IniFormat,
                            this);
-
 }
+
+static void Configuracion::drop(){
+
+    static QMutex mutex;
+    mutex.lock();
+    delete pinstance;
+    pinstance = 0;
+    mutex.unlock();
+}
+
 
 QString Configuracion::getValueConfig(QString tag, QString lbl)
 {
