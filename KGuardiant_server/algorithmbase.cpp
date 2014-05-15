@@ -46,7 +46,6 @@ void AlgorithmBase::logParams() {
  */
 void AlgorithmBase::run() {
 
-    consoleInput();
     logParams();
     execute();
     logOutput();
