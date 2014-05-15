@@ -4,12 +4,15 @@ KGuardiantThread::KGuardiantThread(qintptr ID, QObject *parent) :
     QThread(parent)
 {
     this->socketDescriptor = ID;
+
 }
 
 void KGuardiantThread::run()
 {
     //Iniciamos o novo Thread
     qDebug() << "Thread Iniciado.";
+    Logger::Instance()->log(
+                QString("Thread Iniciado"));
 
     socket = new QTcpSocket();
 
@@ -49,7 +52,10 @@ void KGuardiantThread::readyRead()
 
 void KGuardiantThread::disconnected()
 {
-    qDebug() << "Desconectado o ID["<< socketDescriptor <<"]";
+    QString msg(QString("Desconectado o ID[%1]").arg(socketDescriptor));
+
+    qDebug() << msg;
+    Logger::Instance()->log(msg);
 
     socket->deleteLater();
     exit(0);

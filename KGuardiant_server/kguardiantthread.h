@@ -4,6 +4,7 @@
 #include <QThread>
 #include <QTcpSocket>
 #include <QDebug>
+#include "logger.h"
 
 class KGuardiantThread : public QThread
 {
