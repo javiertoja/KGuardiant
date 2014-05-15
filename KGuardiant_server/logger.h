@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QDateTime>
 #include <QDebug>
+#include <QMutex>
 #include "configuracion.h"
 #include "constants.h"
 
@@ -18,7 +19,7 @@ public:
 
     void log(QString logData);
     void logImage(QImage* logImage);
-
+    static void drop();
 signals:
     
 public slots:

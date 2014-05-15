@@ -4,12 +4,28 @@ Logger* Logger::pinstance = 0;
 //Método para recuperar a instancia do singleton
 Logger* Logger::Instance()
 {
+    static QMutex mutex;
     if (pinstance == 0){
 
-        pinstance = new Logger();
+        mutex.lock();
+        if (pinstance ==0){
+            pinstance = new Logger();
+        }
+        mutex.unlock();
     }
     return pinstance;
 }
+
+// Metodo para destruir el singleton de manera controlada por mutex
+static void Logger::drop(){
+
+    static QMutex mutex;
+    mutex.lock();
+    delete pinstance;
+    pinstance = 0;
+    mutex.unlock();
+}
+
 
 //Constructor
 Logger::Logger(QObject *parent) :
@@ -32,6 +48,7 @@ Logger::Logger(QObject *parent) :
     }
 }
 
+// Metodo para guardar logs
 void Logger::log(QString logData){
 
     QDateTime fecha = QDateTime::currentDateTime();
