@@ -13,13 +13,7 @@ AlgorithmBase::AlgorithmBase() {
 AlgorithmBase::~AlgorithmBase() {
 
 }
-/*
- * Método Abstracto encargado de encuestrar o usuario para obter datos
- * adicionais para a execución do algoritmo.
- */
-void AlgorithmBase::consoleInput() {
 
-}
 /*
  * Método encargao de realizar a execución propiamente dita do algoritmo.
  */
@@ -49,4 +43,9 @@ void AlgorithmBase::run() {
     logParams();
     execute();
     logOutput();
+}
+
+void AlgorithmBase::stopTask(int number)
+{
+    this->stop = 1;
 }

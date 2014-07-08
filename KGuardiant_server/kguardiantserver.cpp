@@ -1,5 +1,6 @@
 #include "kguardiantserver.h"
-#include "kguardiantthread.h"
+//#include "kguardiantthread.h"
+#include "kguardiantclient.h"
 
 KGuardiantServer::KGuardiantServer(QObject *parent) :
     QTcpServer(parent)
@@ -29,11 +30,13 @@ void KGuardiantServer::incomingConnection(qintptr socketDescriptor)
     qDebug() << "Conectando cliente ID [" << socketDescriptor << "]";
     Logger::Instance()->log((QString("Conectando cliente ID [%1]").arg(socketDescriptor)));
     //Por cada nova conexión creamos un novo thread
-    KGuardiantThread *thread = new KGuardiantThread(socketDescriptor,this);
+    //KGuardiantThread *thread = new KGuardiantThread(socketDescriptor,this);
 
     //Conectamos as sinales con novo thread, unha vez que o thread non se
     //necesite limparanse.
-    connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+    //connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
-    thread->start();
+    //thread->start();
+
+    KGuardiantClient *client = new KGuardiantClient(socketDescriptor,this);
 }

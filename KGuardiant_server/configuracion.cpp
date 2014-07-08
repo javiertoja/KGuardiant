@@ -29,6 +29,7 @@ Configuracion::Configuracion(QObject *parent) :
                            this);
 }
 
+/*
 static void Configuracion::drop(){
 
     static QMutex mutex;
@@ -37,7 +38,7 @@ static void Configuracion::drop(){
     pinstance = 0;
     mutex.unlock();
 }
-
+*/
 
 QString Configuracion::getValueConfig(QString tag, QString lbl)
 {

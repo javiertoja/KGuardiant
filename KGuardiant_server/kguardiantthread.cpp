@@ -16,13 +16,6 @@ void KGuardiantThread::run()
 
     socket = new QTcpSocket();
 
-    //Seteamos o ID
-    if(!socket->setSocketDescriptor(this->socketDescriptor))
-    {
-        //Error a hora de Settear o socket.
-        emit error(socket->error());
-        return;
-    }
 
     //Se todo vai ben conectamos o socket as señais correspondentes
     //Usamos QT::DirectConnection por que o servidor é multithread
@@ -45,7 +38,7 @@ void KGuardiantThread::readyRead()
 
     //Imprimimos os datos recibidos
     qDebug() << "Datos recibidos de ["<< socketDescriptor << "]["
-             << data <<"]";
+             << data.toInt() <<"]";
 
     socket->write(data);
 }

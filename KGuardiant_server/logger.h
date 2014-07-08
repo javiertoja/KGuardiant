@@ -19,7 +19,7 @@ public:
 
     void log(QString logData);
     void logImage(QImage* logImage);
-    static void drop();
+
 signals:
     
 public slots:

@@ -17,7 +17,7 @@ public:
     void setValueConfig(QString tag,
                         QString lbl,
                         QString value);
-    static void drop();
+    //static void drop();
 signals:
     
 public slots:

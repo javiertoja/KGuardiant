@@ -3,9 +3,11 @@
 
 #include <QString>
 #include <QMap>
+#include <QThread>
 
-class AlgorithmBase
+class AlgorithmBase : public QThread
 {
+    Q_OBJECT
 protected:
     QString *algorithmName;
     QMap<QString, QString> *parameters;
@@ -13,11 +15,18 @@ protected:
 public:
     AlgorithmBase();
     virtual ~AlgorithmBase();
-    virtual void run();
+
     virtual void logParams();
     virtual void execute();
     virtual void logOutput();
 
+protected:
+    virtual void run();
+    int stop;
+public slots:
+    void stopTask(int number);
+signals:
+    void resultado(int number);
 };
 
 #endif // ALGORITHMBASE_H

@@ -16,16 +16,6 @@ Logger* Logger::Instance()
     return pinstance;
 }
 
-// Metodo para destruir el singleton de manera controlada por mutex
-static void Logger::drop(){
-
-    static QMutex mutex;
-    mutex.lock();
-    delete pinstance;
-    pinstance = 0;
-    mutex.unlock();
-}
-
 
 //Constructor
 Logger::Logger(QObject *parent) :
