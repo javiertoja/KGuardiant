@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QTcpSocket>
 #include "logger.h"
-#include "movementdetector.h"
+#include "camvisor.h"
 
 class KGuardiantClient : public QObject
 {
@@ -13,21 +13,22 @@ public:
     explicit KGuardiantClient(qintptr descriptor, QObject *parent = 0);
 
 signals:
-    void endAlgoritm(int algId);
+    void endAlgoritm(bool stop);
     void error(QTcpSocket::SocketError socketerror);
 public slots:
     void connected();
     void disconnected();
     void readyRead();
 
-    void resultAlgDetector();
-    void restulAlgVisor();
-
+    void resultAlgDetector(int number);
+    void resultAlgVisor(QByteArray img);
+    void errorAlg(int code);
 private:
     QTcpSocket *socket;
     int stop;
     qintptr socketDescriptor;
-    MovementDetector *mvDetector;
+    CamVisor *camVisor;
+
 
 };
 

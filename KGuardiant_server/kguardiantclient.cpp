@@ -29,10 +29,10 @@ KGuardiantClient::KGuardiantClient(qintptr descriptor, QObject *parent) :
     qDebug() << msg;
     Logger::Instance()->log(msg);
 
-    this->mvDetector = new MovementDetector();
-    connect(this->mvDetector, SIGNAL(resultado(int)), this, SLOT(resultAlgDetector()), Qt::QueuedConnection);
-    connect(this, SIGNAL(endAlgoritm(int)), this->mvDetector, SLOT(stopTask(int)), Qt::AutoConnection);
-
+    this->camVisor = new CamVisor(false);
+    connect(this->camVisor,SIGNAL(resultado(QByteArray)),this,SLOT(resultAlgVisor(QByteArray)),Qt::QueuedConnection);
+    connect(this,SIGNAL(endAlgoritm(bool)),this->camVisor,SLOT(stopTask(bool)),Qt::QueuedConnection);
+    connect(this->camVisor,SIGNAL(error(int)),this,SLOT(errorAlg(int)));
 }
 
 
@@ -48,6 +48,7 @@ void KGuardiantClient::disconnected()
     qDebug() << msg;
     Logger::Instance()->log(msg);
 
+    emit endAlgoritm(1);
 }
 
 
@@ -55,28 +56,33 @@ void KGuardiantClient::readyRead()
 {
 
     QByteArray data = socket->readAll();
+
     qDebug() << data;
 
-    if(data.toInt()== 1){
+    if(data == "1"){
         emit endAlgoritm(1);
     }else{
-        this->mvDetector->start();
+        this->camVisor->start();
     }
 
-    //socket->write(data);
+    socket->write(data);
 }
 
-void KGuardiantClient::resultAlgDetector()
+void KGuardiantClient::resultAlgDetector(int number)
 {
+
+    socket->write(QString(number).toLatin1());
 
 }
 
-void KGuardiantClient::restulAlgVisor()
+void KGuardiantClient::resultAlgVisor(QByteArray img)
 {
-    QByteArray Buffer;
-    Buffer.append("\r\nTask result = ");
+    qDebug() << "Sending image.";
+    socket->write(img);
+}
 
 
-    socket->write(Buffer);
-
+void KGuardiantClient::errorAlg(int code)
+{
+    qDebug() << "Error !";
 }
