@@ -3,11 +3,11 @@
 
 #include <QThread>
 #include <QDebug>
+#include <QDataStream>
+#include <QByteArray>
 #include "opencv/cv.h"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
-
-#include "asmopencv.h"
 
 class CamVisor : public QThread
 {
@@ -15,7 +15,7 @@ class CamVisor : public QThread
 public:
     explicit CamVisor(bool origin);
     void run();
-
+    QByteArray mat2ByteArray(const cv::Mat &image);
 signals:
     void resultado(QByteArray img);
     void error(int code);
