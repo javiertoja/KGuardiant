@@ -6,6 +6,18 @@
 #include <QSettings>
 #include <QTcpSocket>
 #include <QDebug>
+#include <QByteArray>
+#include <QDataStream>
+#include <QImage>
+#include <QPixmap>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
+
+#include "opencv/cv.h"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
+#include "qtOpencv/cvmatandqimage.h"
 
 namespace Ui {
 class Client;
@@ -18,7 +30,7 @@ class Client : public QWidget
 public:
     explicit Client(QWidget *parent = 0);
     ~Client();
-    
+    cv::Mat byteArray2Mat(const QByteArray &byteArray);
 private slots:
     void on_lineEdit_returnPressed();
     void readyRead();

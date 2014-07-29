@@ -1,6 +1,8 @@
 #include "client.h"
 #include "ui_client.h"
 
+
+
 Client::Client(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Client)
@@ -30,23 +32,29 @@ void Client::on_lineEdit_returnPressed()
 
 void Client::readyRead()
 {
-    QImage img;
-    //ui->textBrowser->append(QString(socket->readAll()));
-    qDebug() << "Imagen recibida";
-    QPixmap pixmap;
-    QGraphicsScene scene;
-    img.fromData(socket->readAll());
-    pixmap.fromImage(img);
-    ui->imglbl->setPixmap(pixmap);
-    ui->imglbl->show();
-    scene.clear();
-    scene.addPixmap(pixmap);
-    ui->graphicsView->setScene(&scene);
-    ui->graphicsView->show();
-    /*QGraphicsScene* scene = new QGraphicsScene();
+    QByteArray data = socket->readAll();
+    cv::Mat matImage = byteArray2Mat(data);
 
-    img.loadFromData(socket->readAll());
-    scene->addPixmap(QPixmap().fromImage(img));*/
+    if (matImage.isContinuous()){
+        QImage imagen = QtOcv::mat2Image(cv::imdecode(matImage,CV_LOAD_IMAGE_COLOR));
 
-    //ui->graphicsView->setScene(scene);
+        ui->imglbl->setPixmap(QPixmap::fromImage(imagen));
+
+    }else{
+        qDebug() << "no continua";
+    }
+    matImage.release();
+}
+
+cv::Mat Client::byteArray2Mat(const QByteArray &byteArray)
+{
+    QDataStream stream(byteArray);
+    int matType, rows, cols;
+    QByteArray data;
+    stream >> matType;
+    stream >> rows;
+    stream >> cols;
+    stream >> data;
+    cv::Mat mat( rows, cols, matType, (void *)data.data());
+    return mat.clone();
 }

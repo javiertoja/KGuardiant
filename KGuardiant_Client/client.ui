@@ -6,71 +6,61 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1149</width>
-    <height>720</height>
+    <width>774</width>
+    <height>566</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Client</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>19</x>
-     <y>19</y>
-     <width>1121</width>
-     <height>681</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="sizeConstraint">
-     <enum>QLayout::SetMaximumSize</enum>
-    </property>
-    <item>
-     <widget class="QGraphicsView" name="graphicsView">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="baseSize">
-       <size>
-        <width>640</width>
-        <height>480</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="imglbl">
-      <property name="minimumSize">
-       <size>
-        <width>640</width>
-        <height>480</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Message</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit"/>
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="imglbl">
+       <property name="minimumSize">
+        <size>
+         <width>640</width>
+         <height>480</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>640</width>
+         <height>480</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Message</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
