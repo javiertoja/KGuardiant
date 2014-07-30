@@ -9,4 +9,8 @@
 #define KINNECT "1"
 #define WEBCAM "0"
 
+#define START_CAM 1
+#define STOP_CAM  2
+#define START_MOV 3
+#define STOP_MOV  4
 #endif // CONSTANTS_H

@@ -1,10 +1,11 @@
 #include "kguardiantclient.h"
 
-KGuardiantClient::KGuardiantClient(qintptr descriptor, QObject *parent) :
+KGuardiantClient::KGuardiantClient(qintptr descriptor, cv::VideoCapture *capture, QObject *parent) :
     QObject(parent)
 {
     this->stop = 0;
     this->socketDescriptor = descriptor;
+    this->capture = capture;
 
     QString msg(QString("Fio Para o cliente ID[%1] creado.").arg(descriptor));
 
@@ -29,10 +30,6 @@ KGuardiantClient::KGuardiantClient(qintptr descriptor, QObject *parent) :
     qDebug() << msg;
     Logger::Instance()->log(msg);
 
-    this->camVisor = new CamVisor(false);
-    connect(this->camVisor,SIGNAL(resultado(QByteArray)),this,SLOT(resultAlgVisor(QByteArray)),Qt::QueuedConnection);
-    connect(this,SIGNAL(endAlgoritm(bool)),this->camVisor,SLOT(stopTask(bool)),Qt::QueuedConnection);
-    connect(this->camVisor,SIGNAL(error(int)),this,SLOT(errorAlg(int)));
 }
 
 
@@ -59,13 +56,26 @@ void KGuardiantClient::readyRead()
 
     qDebug() << data;
 
-    if(data == "1"){
-        emit endAlgoritm(1);
-    }else{
+    if(atoi(data.data()) == START_CAM){
+        this->camVisor = new CamVisor(false,capture);
+        connect(this->camVisor,SIGNAL(resultado(QByteArray)),this,SLOT(resultAlgVisor(QByteArray)),Qt::QueuedConnection);
+        connect(this,SIGNAL(endAlgoritm(bool)),this->camVisor,SLOT(stopTask(bool)),Qt::QueuedConnection);
+        connect(this->camVisor,SIGNAL(error(int)),this,SLOT(errorAlg(int)));
         this->camVisor->start();
     }
 
-    socket->write(data);
+    if(atoi(data.data()) == STOP_CAM){
+        emit endAlgoritm(STOP_CAM);
+    }
+
+    if(atoi(data.data()) == START_MOV){
+        //this->camVisor->start();
+    }
+
+    if(atoi(data.data()) == STOP_MOV){
+        //emit endAlgoritm(STOP_MOV);
+    }
+
 }
 
 void KGuardiantClient::resultAlgDetector(int number)
@@ -77,7 +87,7 @@ void KGuardiantClient::resultAlgDetector(int number)
 
 void KGuardiantClient::resultAlgVisor(QByteArray img)
 {
-    qDebug() << "Sending image.";
+
     socket->write(img);
 }
 

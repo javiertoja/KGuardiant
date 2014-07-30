@@ -13,7 +13,8 @@ class CamVisor : public QThread
 {
     Q_OBJECT
 public:
-    explicit CamVisor(bool origin);
+    explicit CamVisor(bool origin,cv::VideoCapture *capture);
+    ~CamVisor();
     void run();
     QByteArray mat2ByteArray(const cv::Mat &image);
 signals:
@@ -23,6 +24,7 @@ public slots:
     void stopTask(bool stop);
 
 private:
+    cv::VideoCapture *capture;
     int stop;
     bool origin;
 };

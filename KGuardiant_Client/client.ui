@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>774</width>
-    <height>566</height>
+    <width>662</width>
+    <height>576</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,14 +47,25 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QPushButton" name="btnConectar">
          <property name="text">
-          <string>Message</string>
+          <string>conectar</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QPushButton" name="btnStartVisor">
+         <property name="text">
+          <string>Start Visor</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnStopVisor">
+         <property name="text">
+          <string>Stop Visor</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -65,4 +76,7 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
+ <slots>
+  <slot>on_StartVisor_Clicked()</slot>
+ </slots>
 </ui>

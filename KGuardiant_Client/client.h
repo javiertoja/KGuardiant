@@ -32,8 +32,11 @@ public:
     ~Client();
     cv::Mat byteArray2Mat(const QByteArray &byteArray);
 private slots:
-    void on_lineEdit_returnPressed();
     void readyRead();
+    void on_btnStartVisor_clicked();
+    void on_btnConectar_clicked();
+    void on_btnStopVisor_clicked();
+
 private:
     Ui::Client  *ui;
 

@@ -16,18 +16,12 @@ Client::Client(QWidget *parent) :
 
     socket = new QTcpSocket();
     connect(socket,SIGNAL(readyRead()),this,SLOT(readyRead()));
-    socket->connectToHost("127.0.0.1",1234);
+
 }
 
 Client::~Client()
 {
     delete ui;
-}
-
-void Client::on_lineEdit_returnPressed()
-{
-    socket->write(ui->lineEdit->text().toLatin1());
-    ui->lineEdit->setText("");
 }
 
 void Client::readyRead()
@@ -57,4 +51,20 @@ cv::Mat Client::byteArray2Mat(const QByteArray &byteArray)
     stream >> data;
     cv::Mat mat( rows, cols, matType, (void *)data.data());
     return mat.clone();
+}
+
+void Client::on_btnStartVisor_clicked()
+{
+    socket->write(QByteArray("1",1));
+}
+
+void Client::on_btnConectar_clicked()
+{
+    socket->connectToHost("127.0.0.1",1234);
+}
+
+void Client::on_btnStopVisor_clicked()
+{
+    socket->write(QByteArray("2",1));
+    ui->imglbl->setPixmap(QPixmap());
 }

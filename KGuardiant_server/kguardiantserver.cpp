@@ -7,6 +7,11 @@ KGuardiantServer::KGuardiantServer(QObject *parent) :
 {
 }
 
+KGuardiantServer::~KGuardiantServer()
+{
+    capture.release();
+}
+
 void KGuardiantServer::startServer()
 {
     Configuracion* singleton = Configuracion::Instance();
@@ -20,6 +25,20 @@ void KGuardiantServer::startServer()
     else
     {
          Logger::Instance()->log((QString("Escoitando o porto [%1]").arg(port)));
+    }
+
+    capture.open(0);
+
+    if (capture.isOpened())
+    {
+        capture.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+        capture.set(CV_CAP_PROP_FRAME_WIDTH, 480);
+        capture.set(CV_CAP_PROP_FPS, 30);
+        qDebug() << "Cámara correcta!";
+    }else
+    {
+        qDebug() << "Error o abrir a camara";
+        return;
     }
 }
 
@@ -38,5 +57,5 @@ void KGuardiantServer::incomingConnection(qintptr socketDescriptor)
 
     //thread->start();
 
-    KGuardiantClient *client = new KGuardiantClient(socketDescriptor,this);
+    KGuardiantClient *client = new KGuardiantClient(socketDescriptor,&capture,this);
 }
