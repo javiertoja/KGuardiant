@@ -30,9 +30,11 @@ LIBS += -lopencv_nonfree
 LIBS += -lcvblob
 
 SOURCES += main.cpp\
-        client.cpp
+        client.cpp \
+    ClickableLabel.cpp
 
-HEADERS  += client.h
+HEADERS  += client.h \
+    ClickableLabel.h
 
 FORMS    += client.ui
 

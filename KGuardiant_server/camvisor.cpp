@@ -21,19 +21,21 @@ void CamVisor::run()
     qDebug() << "Iniciando Visor !";
     while(!this->stop && capture->isOpened())
     {
-
+        QThread::sleep(0.3);
         *capture >> frame;
 
         cv::imencode(".jpg",frame,compressed,params);
         emit resultado(mat2ByteArray(cv::Mat(compressed)));
     }
 
+    qDebug() << "Visor Parado";
 
-    exec();
+    //exec();
 }
 
 void CamVisor::stopTask(bool stop)
 {
+    qDebug() << "Parando Visor";
     this->stop = stop;
 }
 

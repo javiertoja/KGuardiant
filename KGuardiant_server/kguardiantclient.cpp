@@ -57,6 +57,7 @@ void KGuardiantClient::readyRead()
     qDebug() << data;
 
     if(atoi(data.data()) == START_CAM){
+        emit endAlgoritm(STOP_CAM);
         this->camVisor = new CamVisor(false,capture);
         connect(this->camVisor,SIGNAL(resultado(QByteArray)),this,SLOT(resultAlgVisor(QByteArray)),Qt::QueuedConnection);
         connect(this,SIGNAL(endAlgoritm(bool)),this->camVisor,SLOT(stopTask(bool)),Qt::QueuedConnection);
@@ -87,7 +88,6 @@ void KGuardiantClient::resultAlgDetector(int number)
 
 void KGuardiantClient::resultAlgVisor(QByteArray img)
 {
-
     socket->write(img);
 }
 
