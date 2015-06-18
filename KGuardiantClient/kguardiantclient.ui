@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>KGuardiantClient</class>
+ <widget class="QMainWindow" name="KGuardiantClient">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>KGuardiantClient</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <widget class="QWidget" name="TabInicio">
+         <attribute name="title">
+          <string>Inicio</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblInicio">
+            <property name="font">
+             <font>
+              <pointsize>27</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+              <underline>true</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+            <property name="text">
+             <string>Benvido ó sistema KGuardiant</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>27</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>27</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>ALERTAS :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblAlertas">
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Panel</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnClose">
+          <property name="text">
+           <string>Pechar</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArquivo">
+    <property name="title">
+     <string>Arquivo</string>
+    </property>
+    <addaction name="actionSair"/>
+   </widget>
+   <widget class="QMenu" name="menuEstaci_ns">
+    <property name="title">
+     <string>Estacións</string>
+    </property>
+    <addaction name="actionConectar"/>
+    <addaction name="actionDesconectar"/>
+   </widget>
+   <widget class="QMenu" name="menuAxuda">
+    <property name="title">
+     <string>Axuda</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuArquivo"/>
+   <addaction name="menuEstaci_ns"/>
+   <addaction name="menuAxuda"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionSair">
+   <property name="text">
+    <string>sair</string>
+   </property>
+  </action>
+  <action name="actionConectar">
+   <property name="text">
+    <string>Conectar</string>
+   </property>
+  </action>
+  <action name="actionDesconectar">
+   <property name="text">
+    <string>Desconectar</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>Sobre KGuardiant</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btnClose</sender>
+   <signal>clicked()</signal>
+   <receiver>KGuardiantClient</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1210</x>
+     <y>678</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>840</x>
+     <y>-6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSair</sender>
+   <signal>triggered()</signal>
+   <receiver>KGuardiantClient</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
